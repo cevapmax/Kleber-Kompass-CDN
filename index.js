@@ -10687,7 +10687,7 @@
         );
         console.log("mobile: " + (window.detectMobile() || window.mobileAndTabletCheck()));
         console.log("tablet landscape: " + matchLandscapeTablet());
-        console.log("user agent: " + navigator.userAgent);
+        console.log("user agent: " + window.mobileAndTabletCheck());
         navigator.userAgent;
         if (matchDesktop() && !(window.detectMobile() || window.mobileAndTabletCheck())) {
           removeClass();
