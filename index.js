@@ -4448,7 +4448,7 @@
     return window.matchMedia(`(max-width: 479px)`).matches;
   }
   function matchTablet() {
-    return window.matchMedia(`(min-width: 768px) and (max-width: 992px`).matches;
+    return window.matchMedia(`(min-width: 768px) and (max-width: 992px)`).matches;
   }
   function matchDesktop() {
     return window.matchMedia(`(min-width: 992px)`).matches;
