@@ -10680,7 +10680,9 @@
         console.log(
           "desktop: " + (matchDesktop() && !(window.detectMobile() || window.mobileAndTabletCheck()))
         );
-        console.log("mobile: " + (window.detectMobile() || window.mobileAndTabletCheck()));
+        console.log(
+          "mobile: " + (window.detectMobile() || window.mobileAndTabletCheck() || matchTablet() || matchBigMobile() || matchMediumMobile() || matchSmallMobile())
+        );
         if (matchDesktop() && !(window.detectMobile() || window.mobileAndTabletCheck())) {
           removeClass();
           el.addEventListener("mouseenter", () => {
@@ -10689,13 +10691,23 @@
           el.addEventListener("mouseleave", () => {
             removeClass();
           });
-        } else if (window.detectMobile() || window.mobileAndTabletCheck()) {
+        } else if (window.detectMobile() || window.mobileAndTabletCheck() || matchTablet() || matchBigMobile() || matchMediumMobile() || matchSmallMobile()) {
           addClass();
         } else {
           addClass();
         }
       });
     };
+    function startAnimation() {
+      if (!layoutWrapper)
+        return;
+      layoutWrapper.style.animationPlayState = "running";
+    }
+    function stopAnimation() {
+      if (!layoutWrapper)
+        return;
+      layoutWrapper.style.animationPlayState = "paused";
+    }
     const animateScroll = () => {
       if (layoutWrapper) {
         if (matchSmallMobile())
@@ -10704,23 +10716,13 @@
           layoutWrapper.style.animationName = "moveupmobilemedium";
         if (matchBigMobile())
           layoutWrapper.style.animationName = "moveupmobilebig";
-        if (matchTablet())
+        if (matchTablet() || window.detectMobile() || window.mobileAndTabletCheck())
           layoutWrapper.style.animationName = "moveuptablet";
         if (matchDesktop()) {
           layoutWrapper.style.animationName = "moveupdesktop";
           layoutWrapper?.addEventListener("mouseenter", stopAnimation);
           layoutWrapper?.addEventListener("mouseleave", startAnimation);
         }
-      }
-      function startAnimation() {
-        if (!layoutWrapper)
-          return;
-        layoutWrapper.style.animationPlayState = "running";
-      }
-      function stopAnimation() {
-        if (!layoutWrapper)
-          return;
-        layoutWrapper.style.animationPlayState = "paused";
       }
       startAnimation();
     };
